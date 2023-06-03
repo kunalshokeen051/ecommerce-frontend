@@ -2,29 +2,37 @@
 
 .shop-by-category {
   margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   @include md {
     margin: 50px 0;
 
   }
+  h2{
+font-size: 2.5rem;
+margin: 30px 0;
+  }
   .categories {
-      // border: 2px solid red;
     display: flex;
     flex-flow: wrap;
+    justify-content: center;
     padding: 0 10px;
-    gap: 10px;
+    gap: 20px;
+    // border: 2px solid red;
     @include md{
         padding: 0;
     }
     .category {
-      background-color: black;
       display: flex;
-      width: calc(50% - 5px);
+      // border: 2px solid red;
+      width: calc(25% - 5px);
       cursor: pointer;
       overflow: hidden;
       @include md {
-        width: calc(50% - 10px);
-        flex-direction: column;
-        border-radius: 5px;
+        width:40%;
+        border-radius: 10px;
+        height: 300px;
       }
       img {
         width: 100%;

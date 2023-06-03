@@ -1,4 +1,4 @@
-import React, { useEffect,useCallback, useContext } from "react";
+import React, { useEffect, useContext, Suspense } from "react";
 import "./Home.scss";
 
 import Offer from "./Offer/Offer";
@@ -7,7 +7,8 @@ import Category from "./Category/Category";
 import Products from "../Products/Products";
 import Slider from "../Slider/Slider";
 import { fetchDataFromApi } from "../../utils/Api"
-import { Context } from "../../utils/Context";
+import { Context } from "../../utils/Context"
+import Loader from "../Loader/Loader";
 
 
 const Home = () => {
@@ -25,7 +26,7 @@ const Home = () => {
   const getProducts = () => {
     fetchDataFromApi("/api/products?populate=*")
       .then(res => {
-        // console.log(res);
+        console.log(res);
         setProducts(res);
   });
 };
@@ -39,6 +40,7 @@ const Home = () => {
 
 
     return (
+      <Suspense fallback={<Loader/>}>
       <div>
         <Offer />
         <Banner />
@@ -51,6 +53,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      </Suspense>
     );
   }
 

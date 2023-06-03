@@ -19,6 +19,7 @@ const SingleProduct = () => {
   const { id } = useParams();
   const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
   const { handleAddToCart } = useContext(Context);
+  console.log(data);
 
 
   const increment = () => {
@@ -38,8 +39,7 @@ const SingleProduct = () => {
       <div className="layout">
         <div className="single-product-page">
           <div className="left">
-            <img src={process.env.REACT_APP_DEV_URL +
-              product.img.data[0].attributes.url} alt="prod.jpg" />
+            <img src={product.img.data[0].attributes.url} alt="prod.jpg" />
           </div>
           <div className="right">
             <span className="name">{product.title}</span>
@@ -70,11 +70,11 @@ const SingleProduct = () => {
               <span className="text-bold">
                 Share:
                 <span className="social-icons">
-                  <a href="#"> <FaFacebookF size={16}  className="icon"/> </a>
-                  <a href="#"> <FaInstagram size={16} className="icon" />  </a>
-                  <a href="#"> <FaPinterest size={16} className="icon" />  </a>
-                  <a href="#"> <FaTwitter size={16}  className="icon"/>  </a>
-                 <a href="#"> <FaLinkedinIn size={16} className="icon" />  </a>
+                  <a href="www.facebook.com" target="_blank"> <FaFacebookF size={16}  className="icon"/> </a>
+                  <a href="www.instagram.com" target="_blank"> <FaInstagram size={16} className="icon" />  </a>
+                  <a href="www.pinterest.com" target="_blank"> <FaPinterest size={16} className="icon" />  </a>
+                  <a href="www.twitter.com" target="_blank"> <FaTwitter size={16}  className="icon"/>  </a>
+                 <a href="www.linkedin.com" target="_blank"> <FaLinkedinIn size={16} className="icon" />  </a>
                 </span>
               </span>
             </div>

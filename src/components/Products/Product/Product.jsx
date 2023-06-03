@@ -13,8 +13,7 @@ const Product = ({id, data}) => {
   return (
     <div className="product-card" onClick={showProduct}>
       <div className="thumbnail">
-        <img src={ process.env.REACT_APP_DEV_URL +
-      data.img.data[0].attributes.url} alt="prod.jpg" />
+        <img src={data.img.data[0].attributes.formats.small.url} alt="prod.jpg" />
       </div>
       <div className="prod-details">
         <span className="name">{data.title}</span>
