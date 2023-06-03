@@ -1,0 +1,169 @@
+@import "../../css-config/mixins.scss";
+@import "../../css-config/variables.scss";
+
+.main-header {
+  overflow: hidden;
+  width: 100%;
+  padding: 0 20px;
+  background: $black;
+  color: $white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 99;
+
+  @include md {
+    padding: 0 40px;
+    backdrop-filter: blur(5px);
+  }
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include md {
+      height: 60px;
+    }
+    .left {
+      list-style-type: none;
+      display: none;
+      gap: 25px;
+
+      @include md {
+        display: flex;
+      }
+
+      li {
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+    }
+    .center {
+      font-size: 22px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 100ms linear;
+      &:hover{
+        color: $purple;
+      }
+      @include md {
+        font-size: 34px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      @include md {
+        gap: 25px;
+      }
+      svg {
+        font-size: 20px;
+        cursor: pointer;
+        @include md {
+          font-size: 24px;
+        }
+      }
+      .cart-icon {
+        position: relative;
+        span {
+          min-width: 20px;
+          text-align: center;
+          background-color: $purple;
+          color: $white;
+          padding: 2.5px;
+          position: absolute;
+          top: -5px;
+          right: -12px;
+          font-size: 12px;
+          line-height: 1;
+          border-radius: 10px;
+        }
+      }
+    }
+  }
+
+  &.sticky-header {
+    position: sticky;
+    top: 0;
+    transform: translateY(-80px);
+    animation: stickyHeader 0.3s ease-in-out forwards;
+  }
+}
+
+.expanded-header {
+  opacity: 0;
+  background: transparent;
+  color: $white;
+  position: absolute;
+  z-index: 999;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  flex-direction: row;
+  padding: 0 50px;
+  .left {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+  }
+  .right {
+    display: flex;
+    gap:100px;
+    .list {
+      list-style:disc;
+      li {
+        margin: 10px;
+      }
+    }
+  }
+}
+
+.showExpandedMenu{
+  animation: expandedHeader .5s ease forwards;
+}
+
+
+
+
+@keyframes expandedHeader {
+  0% {
+    transform: translateY(500px);
+    opacity: 0.2;
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+   backdrop-filter: blur(10px);
+  }
+}
+
+@keyframes stickyHeader {
+  0% {
+    transform: translateY(-80px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+from{
+opacity: 0.2;
+text-shadow: 0px 0px 20px $purple;
+}
+to{
+  opacity: 1;
+  text-shadow: 0px 0px 0px $purple;
+}
+}

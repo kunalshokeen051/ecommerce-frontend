@@ -1,0 +1,35 @@
+@import "../../../css-config/mixins.scss";
+@import "../../../css-config/variables.scss";
+
+.offer-container {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background:#073f83;
+  color: $white;
+  overflow: hidden;
+  @include md{
+    display: flex;
+  }
+
+  p {
+    transform: translateX(100%);
+
+    animation: my-animation 15s linear alternate infinite;
+
+    .blue {
+      color: aqua;
+      cursor: pointer;
+    }
+  }
+}
+
+@keyframes my-animation {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

@@ -1,0 +1,48 @@
+
+@font-face {
+    font-family: 'gilroyextrabold';
+    src: url('./font/gilroy/gilroy-extrabold-webfont.woff2') format('woff2'),
+         url('./font/gilroy/gilroy-extrabold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'interregular';
+    src: url('./font/inter/inter-regular.woff2') format('woff2'),
+         url('./font/inter/inter-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "interregular", sans-serif;
+}
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "gilroyextrabold",sans-serif;
+  text-transform: capitalize;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
