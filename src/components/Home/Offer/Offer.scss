@@ -1,35 +1,34 @@
 @import "../../../css-config/mixins.scss";
 @import "../../../css-config/variables.scss";
 
-.offer-container {
-  display: none;
+.category-container {
+  padding: 0 10px;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  height: 50px;
-  background:#073f83;
-  color: $white;
-  overflow: hidden;
-  @include md{
+  background-color: $mustard;
+  // border: 2px solid red;
+
+  .category {
+    width: 30%;
+    height: 100%;
     display: flex;
-  }
-
-  p {
-    transform: translateX(100%);
-
-    animation: my-animation 15s linear alternate infinite;
-
-    .blue {
-      color: aqua;
-      cursor: pointer;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    .category-image {
+      height: 100%;  
+      &:hover{
+        animation: .5s ease-in 0.5s reverse both slider;
+      }
     }
   }
 }
 
-@keyframes my-animation {
+@keyframes slider {
   from {
-    transform: translateX(100%);
+    transform: scaleX(1);
   }
   to {
-    transform: translateX(-100%);
+    transform: scaleX(-1);
   }
 }

@@ -1,11 +1,20 @@
 import './Offer.scss'
 import React from 'react'
+import {category_header} from '../../../Data';
 
 const Offer = () => {
   return (
-    <div className='offer-container'>
-     <p>
-     <span> Get up to ₹8000.00 instant savings on selected products with eligible HDFC Bank cards.</span> <span className='blue'>Shop now</span></p>
+    <div className='category-container'>
+     { 
+      category_header.map((item) =>{
+        return(
+          <div key={item.id} className='category'>
+            <img className='category-image' src={item.logo} alt="logo.png" />
+            <h4>{item.name}</h4>
+          </div>
+        )
+      })
+     }
     </div>
   ) 
 }

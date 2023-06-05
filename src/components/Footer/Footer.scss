@@ -1,4 +1,5 @@
 @import "../../css-config/mixins.scss";
+@import "../../css-config/variables.scss";
 
 .footer {
   width: 100%;
@@ -20,7 +21,7 @@
         font-size: 14px;
       }
       .text {
-        color: rgba(0, 0, 0, 0.5);
+        color: $white;
         font-size: 14px;
       }
       .c-item {
@@ -31,7 +32,7 @@
           font-size: 14px;
           margin-right: 10px;
           margin-top: 4px;
-          color: rgba(0, 0, 0, 0.5);
+          color: $yellow;
         }
       }
       span {
@@ -65,13 +66,13 @@
         font-size: 20px;
         display: flex;
         gap: 20px;
-        color: rgba(0, 0, 0, 0.5);
+        color:$white;
         span{
           a{
             text-decoration: none;
-            color: rgba(0, 0, 0, 0.5);
+            color: $white;
             &:hover{
-              color: rgba(0, 0, 0, 1);
+              color: $yellow;
             }
           }
         }

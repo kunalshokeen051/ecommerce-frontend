@@ -12,20 +12,19 @@ const CartItem = () => {
             {cartItems?.map((item) => (
                 <div
                     className="search-result-item"
-                    key={item.id}
-                    onClick={() => {}}
-                >
+                    key={item[0].id}
+                    onClick={() => {}}>
                     <div className="image-container">
                         <img
                             src={
-                                process.env.REACT_APP_DEV_URL +
-                                item.attributes.image.data[0].attributes.url
+                                item[0].attributes.img.data[0].attributes.url
                             }
-                            alt="prod.jpg"
+
+                            alt='prod.jpg'
                         />
                     </div>
                     <div className="prod-details">
-                        <span className="name">{item.attributes.title}</span>
+                        <span className="name">{item[0].attributes.title}</span>
                         <MdClose
                             className="close-btn"
                             onClick={() => handleRemoveFromCart(item)}
@@ -38,7 +37,7 @@ const CartItem = () => {
                             >
                                 -
                             </span>
-                            <span>{item.attributes.quantity}</span>
+                            <span>{item[0].attributes.quantity}</span>
                             <span
                                 onClick={() =>
                                     handleCartProductQuantity("inc", item)
@@ -48,12 +47,12 @@ const CartItem = () => {
                             </span>
                         </div>
                         <div className="text">
-                            <span>{item.attributes.quantity}</span>
+                            <span>{item[0].attributes.quantity}</span>
                             <span>x</span>
                             <span className="highlight">
                                 <span>&#8377;</span>
-                                {item.attributes.price *
-                                    item.attributes.quantity}
+                                {item[0].attributes.price *
+                                    item[0].attributes.quantity}
                             </span>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ import "./SingleProduct.scss";
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
 import { Navigate, useParams } from "react-router-dom";
 import { useFetch } from '../../hooks/useFetch'
+
 import {
   FaFacebookF,
   FaTwitter,
@@ -19,8 +20,7 @@ const SingleProduct = () => {
   const { id } = useParams();
   const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
   const { handleAddToCart } = useContext(Context);
-  console.log(data);
-
+  // console.log(data);
 
   const increment = () => {
     setQuantity((prevValue) => prevValue + 1);
@@ -33,6 +33,7 @@ const SingleProduct = () => {
 
   if (!data) return;
   const product = data?.data[0]?.attributes;
+  // console.log(product);
 
   return (
     <div className="single-product-main-content">
@@ -54,7 +55,6 @@ const SingleProduct = () => {
                 <span onClick={increment}> + </span>
               </div>
               <button className="add-to-cart-button" onClick={() =>{
-                 //product id and its quantity}
                 handleAddToCart(data.data[0], quantity ) ; 
                 setQuantity(1);
               }}>

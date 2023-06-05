@@ -5,8 +5,8 @@
   overflow: hidden;
   width: 100%;
   padding: 0 20px;
-  background: $black;
-  color: $white;
+  background: $white;
+  color: $black;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 99;
@@ -24,9 +24,25 @@
     margin: 0 auto;
 
     @include md {
-      height: 60px;
+      height: 70px;
     }
-    .left {
+    .left {  
+      font-size: 22px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 100ms linear;
+      &:hover{
+        color: $mustard;
+      }
+      @include md {
+        font-size: 34px;
+      }
+      img{
+        // border: 2px solid red;
+      width: 150px;
+      }
+    }
+    .center {
       list-style-type: none;
       display: none;
       gap: 25px;
@@ -36,31 +52,17 @@
       }
 
       li {
-        font-size: 14px;
+        font-size: 20px;
         font-weight: 600;
         text-transform: uppercase;
         cursor: pointer;
-      }
-    }
-    .center {
-      font-size: 22px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 100ms linear;
-      &:hover{
-        color: $purple;
-      }
-      @include md {
-        font-size: 34px;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
       }
     }
     .right {
       display: flex;
       align-items: center;
       gap: 20px;
+      // border: 2px solid red;
       @include md {
         gap: 25px;
       }
@@ -68,7 +70,7 @@
         font-size: 20px;
         cursor: pointer;
         @include md {
-          font-size: 24px;
+          font-size: 20px;
         }
       }
       .cart-icon {
@@ -76,8 +78,9 @@
         span {
           min-width: 20px;
           text-align: center;
-          background-color: $purple;
-          color: $white;
+          background-color: $yellow;
+          color: $black;
+          font-weight: 700;
           padding: 2.5px;
           position: absolute;
           top: -5px;
@@ -110,7 +113,7 @@
   align-items: center;
   gap: 50px;
   flex-direction: row;
-  padding: 0 50px;
+  padding: 0 0px;
   .left {
     display: flex;
     gap: 20px;
@@ -137,7 +140,7 @@
 
 @keyframes expandedHeader {
   0% {
-    transform: translateY(500px);
+    transform: translateY(00px);
     opacity: 0.2;
     backdrop-filter: blur(0px);
   }
@@ -160,10 +163,10 @@
 @keyframes glow {
 from{
 opacity: 0.2;
-text-shadow: 0px 0px 20px $purple;
+text-shadow: 0px 0px 20px $yellow;
 }
 to{
   opacity: 1;
-  text-shadow: 0px 0px 0px $purple;
+  text-shadow: 0px 0px 0px $yellow;
 }
 }

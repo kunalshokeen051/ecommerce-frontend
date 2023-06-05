@@ -1,3 +1,4 @@
+@import'./css-config/variables.scss';
 
 @font-face {
     font-family: 'gilroyextrabold';
@@ -30,6 +31,8 @@ body {
     line-height: 22px;
     font-weight: 500;
     scroll-behavior: smooth;
+    background: $white !important;
+    color: $black !important;
 }
 
 h1,

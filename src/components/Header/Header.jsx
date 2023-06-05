@@ -1,15 +1,17 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
-
+import { BiUserCircle } from "react-icons/bi";
 import Search from "./Search/Search";
 import Cart from "../Cart/Cart";
 import { useNavigate } from "react-router-dom";
-
 import "./Header.scss";
+import logo from '../../assets/logo.png'
+
 
 const Header = () => {
+
   const [scrolled, setScrolled] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -20,7 +22,6 @@ const Header = () => {
 
   const handleScroll = () => {
     const offset = window.scrollY;
-    // console.log(offset);
     if (offset > 200) {
       setScrolled(true);
       setShowCart(false);
@@ -39,24 +40,18 @@ const Header = () => {
     <>
       <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
         <div className="header-content">
-          <ul className="left">
-            <li onClick={() => {
+          <div className="left">
+         <img src={logo} alt="logo.png" />
+          </div>
+          <div className="center" >
+             <li onClick={() => {
               return (
                 navigate("/"),
                 window.scroll(0,0)
               )
             }}>Home</li>
             <li onClick={() => window.scroll(0,810)}>About</li>
-            <li onClick={() => setShowMenu(!ShowMenu)}>Categories</li>
-          </ul>
-          <div className="center" onClick={() => {
-              return (
-                navigate("/"),
-                window.scroll(0,0),
-                setShowMenu(false),
-                setShowSearch(false)
-              )
-            }} >Grabit
+            <li>Categories</li>
             </div>
           <div className="right">
             <TbSearch onClick={() => setShowSearch(!showSearch)} />
@@ -65,9 +60,13 @@ const Header = () => {
               <CgShoppingCart />
               <span>{cartItems}</span>
             </span>
+            <BiUserCircle />
           </div>
         </div>
       </header>
+
+      {/* mobile Menu */}
+
       {showCart && <Cart setShowCart={setShowCart} />}
       {showSearch && <Search setShowSearch={setShowSearch} />}
       <div className={`expanded-header ${ShowMenu ? "showExpandedMenu" : ""}`}>

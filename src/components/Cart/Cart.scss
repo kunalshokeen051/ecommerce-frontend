@@ -1,4 +1,5 @@
 @import "../../css-config/mixins.scss";
+@import "../../css-config/variables.scss";
 
 .cart-panel {
   position: fixed;
@@ -10,7 +11,7 @@
   justify-content: flex-end;
   z-index: 99;
   .opac-layer {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
     top: 0;
     left: 0;
@@ -21,7 +22,7 @@
     display: flex;
     width: 100%;
     height: 100%;
-    background: #ffffff;
+    background: $white;
     position: relative;
     z-index: 1;
     flex-direction: column;
@@ -48,9 +49,9 @@
         align-items: center;
         justify-content: center;
         padding: 7px;
-        background: #6115a4;
+        background: $mustard;
         border-radius: 10px;
-        color: white;
+        color: $white;
         gap: 5px;
         cursor: pointer;
         svg {
@@ -85,9 +86,9 @@
             justify-content: center;
             cursor: pointer;
             font-size: 13px;
-            color: white;
-            background: #8e2de2;
-            border-bottom: 3px solid #6516aa;
+            color: $white;
+            background: $mustard;
+            border-bottom: 3px solid $mustard;
         }
     }
     .cart-footer{
@@ -103,7 +104,7 @@
                 font-weight: 700px;
                 text-transform: uppercase;
                 &.total{
-                    color:#8e2de2;
+                    color:$mustard;
                 }
             }
         }
@@ -118,14 +119,13 @@
                 justify-content: center;
                 cursor: pointer;
                 font-size: 13px;
-                color: white;
-                background: #8e2de2;
-                border-bottom: 3px solid #6516aa;
+                color: $grey;
+                background: $mustard;
+                border-bottom: 3px solid $mustard;
             }
         }
     }
   }
-}
 
 @keyframes slideCartWindow {
   0% {
@@ -134,4 +134,5 @@
   100% {
     transform: translateX(0%);
   }
+}
 }
