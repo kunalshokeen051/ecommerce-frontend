@@ -1,4 +1,5 @@
 @import "../../css-config/mixins.scss";
+@import "../../css-config/variables.scss";
 
 .single-product-main-content {
   margin: 20px 0;
@@ -19,7 +20,7 @@
       }
       .left {
         width: 100%;
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: $white;
         flex-shrink: 0;
         display: flex;
         align-items: center;
@@ -56,12 +57,13 @@
             line-height: 32px;
             margin-bottom: 20px;
             font-weight: bold;
+            color: $yellow;
         }
         .desc{
             font-size: 14px;
             line-height: 20px;
             margin-bottom: 20px;  
-            color: #6b6b6b;
+            color: #ababab;
             @include md{
                 font-size: 16px;
                 line-height: 24px; 
@@ -75,7 +77,7 @@
             .quantity-buttons{
                 width: fit-content;
                 display: flex;
-                border: 2px solid rgba(0, 0, 0, 0.2);
+                border: 2px solid rgba(255, 255, 255, 0.5);
                 margin-right: 10px;
                 height: 50px;
                 span{
@@ -86,15 +88,15 @@
                     align-items: center;
                     justify-content: center;
                     cursor: pointer;
-                    color: #000000;
+                    color: $white;
                     &:nth-child(1){
-                        border-right: 2px solid rgba(0, 0, 0, 0.2);
+                        border-right: 2px solid rgba(255, 255, 255, 0.5) ;
                     }
                     &:nth-child(2){
                        width: 60px;
                     }
                     &:nth-child(3){
-                        border-left: 2px solid rgba(0, 0, 0, 0.2);
+                        border-left: 2px solid rgba(255, 255, 255, 0.5);
                     }
                 }
             }
@@ -109,8 +111,8 @@
                 cursor: pointer;
                 font-size: 16px;
                 color: white;
-                background: #8e2de2;
-                border-bottom:3px solid  #8e2de2;
+                background: $mustard;
+                border-bottom:3px solid  $mustard;
                 flex-grow: 1;
                 @include md{
                     flex-grow: unset;
@@ -119,9 +121,10 @@
         }
         .divider{
             margin: 20px 0;
+            // border: 2px solid red;
             height: 1px;
             width: 100%;
-            background-color:rgba(0, 0, 0, 0.1);
+            background-color:$yellow;
         }
 
         .info-item{
@@ -137,7 +140,7 @@
                .social-icons{
                 a{
                   text-decoration: none;
-                  color: #191919;
+                  color: $yellow;
                  .icon{
                   transition: all .2s ease-in;
                    &:hover{

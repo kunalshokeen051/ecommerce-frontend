@@ -24,7 +24,7 @@ const Cart = () => {
                     <div className="empty-cart">
                         <BsCartX />
                         <span>No products in the cart.</span>
-                        <button className="return-cta" onClick={() => {}}>
+                        <button className="return-cta" onClick={() => {setShowCart(false)}}>
                             RETURN TO SHOP
                         </button>
                     </div>

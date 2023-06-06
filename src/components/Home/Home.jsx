@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, Suspense } from "react";
+import React, { useEffect, useContext} from "react";
 import "./Home.scss";
 
 import Offer from "./Offer/Offer";
@@ -8,7 +8,8 @@ import Products from "../Products/Products";
 import Slider from "../Slider/Slider";
 import { fetchDataFromApi } from "../../utils/Api"
 import { Context } from "../../utils/Context"
-import Loader from "../Loader/Loader";
+import Modal from './Modal/Modal'
+import LogoAnimationLoader from '../LogoAnimationLoader/LogoAnimationLoader'
 
 
 const Home = () => {
@@ -16,35 +17,37 @@ const Home = () => {
   const { categories,
     setCategories,
     products,
-    setProducts } = useContext(Context);
+    setProducts, loader, setLoader } = useContext(Context);
 
   useEffect(() => {
     getCategories();
     getProducts();
   }, []);
 
-  const getProducts = () => {
-    fetchDataFromApi("/api/products?populate=*")
+  const getProducts = async () => {
+    setLoader(true);
+    await fetchDataFromApi("/api/products?populate=*")
       .then(res => {
-        console.log(res);
         setProducts(res);
   });
 };
 
-    const getCategories = () => {
-      fetchDataFromApi("/api/categories?populate=*")
+    const getCategories = async () => {
+      setLoader(true);
+      await fetchDataFromApi("/api/categories?populate=*")
         .then(res => {
-          // console.log(res);
           setCategories(res);
         })}
 
 
     return (
-      <Suspense fallback={<Loader/>}>
+      <>
+      {loader ? <LogoAnimationLoader />: ""}
+      <Modal/>
       <div>
         <Offer />
         <Banner />
-        <div className="main-content">
+        <div className="main-content" onLoad={() =>{setLoader(false)}}>
           <div className="layout">
             <Slider animate='fade' />
             <Slider animate='slide'/>
@@ -53,8 +56,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      </Suspense>
+      </>
     );
   }
 
-export default Home;
+export default Home

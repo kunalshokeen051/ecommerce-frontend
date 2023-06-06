@@ -17,7 +17,7 @@ const Product = ({id, data}) => {
       </div>
       <div className="prod-details">
         <span className="name">{data.title}</span>
-        <span className="Price">&#8377;{data.price}</span>
+        <span className="price">&#8377;{data.price}</span>
       </div>
     </div>
   );

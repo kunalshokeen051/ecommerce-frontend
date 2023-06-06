@@ -1,13 +1,11 @@
-import React,{Suspense} from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Category.scss";
-import Loader from '../../Loader/Loader';
 
 const Category = ({ categories }) => {
   const navigate = useNavigate();
 
   return (
-    <Suspense fallback={<Loader />}>
     <div className="shop-by-category">
       <h2>Categories</h2>
         <div className="categories">
@@ -27,7 +25,6 @@ const Category = ({ categories }) => {
           ))}
         </div>
     </div>
-    </Suspense>
   );
 };
 

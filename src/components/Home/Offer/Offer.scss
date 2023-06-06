@@ -6,10 +6,13 @@
   display: flex;
   align-items: center;
   background-color: $mustard;
-  // border: 2px solid red;
 
   .category {
+    // border: 2px solid red;
     width: 30%;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.2s ease-in;
     height: 100%;
     display: flex;
     gap: 10px;
@@ -17,18 +20,22 @@
     justify-content: center;
     .category-image {
       height: 100%;  
-      &:hover{
-        animation: .5s ease-in 0.5s reverse both slider;
+      &:hover,&:focus{
+        animation: .8s ease-in forwards flip360;
+        // transform: scaleX(-1);
       }
+    }
+    &:hover,&:focus{
+     transform: scale(1.2);
     }
   }
 }
 
-@keyframes slider {
+@keyframes flip360 {
   from {
-    transform: scaleX(1);
+    transform: rotateY(0);
   }
   to {
-    transform: scaleX(-1);
+    transform: rotateY(360deg);
   }
 }

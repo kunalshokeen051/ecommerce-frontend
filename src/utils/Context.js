@@ -11,7 +11,10 @@ const AppContext = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const [cartCount, setCartCount] = useState(0);
     const [cartSubTotal, setCartSubTotal] = useState(0);
+    const [loader, setLoader] = useState(true);
     const location = useLocation();
+
+// console.log(cartItems[0]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -64,6 +67,8 @@ const AppContext = ({ children }) => {
     return (
         <Context.Provider
             value={{
+                loader,
+                setLoader,
                 products,
                 setProducts,
                 categories,

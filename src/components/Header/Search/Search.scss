@@ -1,4 +1,5 @@
 @import "../../../css-config/mixins.scss";
+@import "../../../css-config/variables.scss";
 
 .search-modal {
   position: fixed;
@@ -7,7 +8,7 @@
   z-index: 999;
   top: 0;
   left: 0;
-  background: white;
+background-color: $grey;
   transform: translateY(100%);
   animation: slideSearchWindow 0.5s ease forwards;
   
@@ -16,7 +17,8 @@
     display: flex;
     justify-content: center;
     padding: 10px 50px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    // border: 1px solid #ababab;
+    box-shadow: 0 10px 50px 5px $mustard;
     position: relative;
     @include md {
       padding: 20px 0;
@@ -32,6 +34,8 @@
       outline: none;
       border: none;
       text-transform: uppercase;
+      background:transparent;
+      color: white;
       @include md {
         font-size: 48px;
         height: 80px;
@@ -68,10 +72,10 @@
         align-items: center;
         gap: 10px;
         padding: 10px 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid #ababab;
         cursor: pointer;
         .img-container {
-          background: rgba(0, 0, 0, 0.05);
+          background: $white;
           width: 60px;
           height: 60px;
           flex-shrink: 0;
@@ -100,7 +104,7 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
-            color: rgba(0, 0, 0, 0.5);
+            color: $white;
           }
         }
       }

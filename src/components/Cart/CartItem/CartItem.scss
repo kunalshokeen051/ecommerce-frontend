@@ -1,3 +1,6 @@
+@import '../../../css-config/mixins.scss';
+@import '../../../css-config/variables.scss';
+
 .cart-products {
   flex-grow: 1;
   .search-result-item {
@@ -35,7 +38,8 @@
               font-size: 12px;
               font-weight: 600;
               .highlight {
-                  color: #8e2de2;
+                  color: $yellow;
+                  font-size: 1rem;
               }
           }
           svg {
@@ -47,7 +51,7 @@
           .quantity-buttons {
               width: fit-content;
               display: flex;
-              border: 1px solid rgba(0, 0, 0, 0.1);
+              border: 1px solid rgba(255, 255, 255, 0.1);
               height: 30px;
               margin-bottom: 8px;
               span {
@@ -57,17 +61,17 @@
                   align-items: center;
                   justify-content: center;
                   cursor: pointer;
-                  color: #6b6b6b;
+                  color: #ffffff;
                   &:nth-child(1) {
                       font-size: 18px;
-                      border-right: 1px solid rgba(0, 0, 0, 0.1);
+                      border-right: 1px solid rgba(255, 255, 255, 0.1);
                   }
                   &:nth-child(2) {
                       width: 40px;
                   }
                   &:nth-child(3) {
                       font-size: 18px;
-                      border-left: 1px solid rgba(0, 0, 0, 0.1);
+                      border-left: 1px solid rgba(255, 255, 255, 0.1);
                   }
               }
           }

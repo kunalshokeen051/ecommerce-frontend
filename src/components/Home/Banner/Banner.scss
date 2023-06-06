@@ -9,6 +9,7 @@
     height: calc(100vh - 180px);
   }
   background-attachment: fixed;
+  overflow: hidden;
 
   .image-container {
     width: 100%;

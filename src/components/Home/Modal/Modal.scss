@@ -1,0 +1,102 @@
+@import '../../../css-config/mixins.scss';
+@import '../../../css-config/variables.scss';
+
+
+.overlay-home{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    // border: 2px solid red;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 5;
+    background: rgba(0,0,0, 0.7);
+}
+.inner-container{
+    position: absolute;
+    left: 35%;
+    top: 10%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 400px;
+    height: 80vh;
+    z-index: 6;
+    background:#000003;
+    border-radius: 10px;
+    overflow: hidden;
+    animation-name: popover;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+    svg{
+      // border: 2px solid red;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    img{
+        width: 400px;
+    height: 40%;
+    border-radius: 20px;
+ }
+ h4{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    span:nth-child(2){
+        color:$yellow
+
+    }
+ }
+ button{
+    height: 10%;
+    font-size: 30px;
+    justify-self: center;
+    animation-name: colorChange;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    background: #ee6055;
+    border: none;
+    color: $white;
+ }
+}
+
+.hidden{
+  display: none;
+}
+
+
+@keyframes colorChange {
+    0% {
+        background: #ee6055;
+      }
+      25% {
+        background: #60d394;
+      }
+      50% {
+        background: #aaf683;
+      }
+      75% {
+        background: #ffd97d;
+      }
+      100% {
+        background: #ff9b85;
+      }
+}
+
+@keyframes popover {
+  from{
+    transform: translateY(600px);
+  }
+  to{
+    transform: translateY(0);
+
+  }
+}

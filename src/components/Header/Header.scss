@@ -5,11 +5,11 @@
   overflow: hidden;
   width: 100%;
   padding: 0 20px;
-  background: $white;
-  color: $black;
+  background: $black;
+  color: $white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   position: relative;
-  z-index: 99;
+  z-index: 2;
 
   @include md {
     padding: 0 40px;
@@ -28,6 +28,7 @@
     }
     .left {  
       font-size: 22px;
+      display: none; 
       font-weight: 700;
       cursor: pointer;
       transition: all 100ms linear;
@@ -36,6 +37,7 @@
       }
       @include md {
         font-size: 34px;
+        display: flex;
       }
       img{
         // border: 2px solid red;
@@ -44,11 +46,10 @@
     }
     .center {
       list-style-type: none;
-      display: none;
+      display: flex;
       gap: 25px;
-
+      color: white;
       @include md {
-        display: flex;
       }
 
       li {
@@ -78,6 +79,7 @@
         span {
           min-width: 20px;
           text-align: center;
+          animation: popup .2s 1 forwards;
           background-color: $yellow;
           color: $black;
           font-weight: 700;
@@ -104,7 +106,7 @@
 .expanded-header {
   opacity: 0;
   background: transparent;
-  color: $white;
+  color: $black;
   position: absolute;
   z-index: 999;
   height: 200px;
@@ -160,13 +162,29 @@
   }
 }
 
-@keyframes glow {
-from{
-opacity: 0.2;
-text-shadow: 0px 0px 20px $yellow;
+@keyframes popup {
+0%{
+opacity: 0;
+transform: scale(0);
+
 }
-to{
+25%{
+  opacity: 0;
+  transform: scale(.5);
+}
+50%{
+  opacity: 0;
+  transform: scale(1);
+}
+75%{
+  opacity: 0.5;
+  transform: scale(1.5);
+  box-shadow: 0px 0px 20px 5px $mustard;
+  transform: translateX(-1);
+}
+100%{
   opacity: 1;
-  text-shadow: 0px 0px 0px $yellow;
+  transform: scale(1);
+  transform: translateX(1);
 }
 }

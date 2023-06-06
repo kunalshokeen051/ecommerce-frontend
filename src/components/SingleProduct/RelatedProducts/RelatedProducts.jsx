@@ -1,6 +1,7 @@
 import React from 'react';
 import Products from '../../Products/Products';
 import {useFetch} from '../../../hooks/useFetch';
+import './RelatedProducts.scss';
 
 const RelatedProducts = ({productId, categoryId}) => {
     const {data} = useFetch(`/api/products?populate=*&filters[id][$ne]
