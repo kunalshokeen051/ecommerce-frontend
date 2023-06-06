@@ -9,14 +9,21 @@ import { useNavigate } from "react-router-dom";
 import "./Header.scss";
 import logo from '../../assets/logo.png'
 import { Context } from "../../utils/Context";
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 
 const Header = () => {
-
   const [scrolled, setScrolled] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-
   const { cartCount, showCart, setShowCart } = useContext(Context);
+  const [user, setUser] = useState([]);
+  const [profile, setProfile] = useState([]);
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => setUser(codeResponse),
+    onError: (error) => console.log('Login Failed:', error)
+  });
 
   const navigate = useNavigate();
 
@@ -32,7 +39,26 @@ const Header = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-  }, []);
+    setProfile(null);
+    if (user) {
+      axios
+        .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+          headers: {
+            Authorization: `Bearer ${user.access_token}`,
+            Accept: 'application/json'
+          }
+        })
+        .then((res) => {
+          setProfile(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [user]);
+
+  const logOut = () => {
+    googleLogout();
+    setProfile(null);
+  };
 
 
   return (
@@ -40,18 +66,18 @@ const Header = () => {
       <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
         <div className="header-content">
           <div className="left">
-         <img src={logo} alt="logo.png" />
+            <img src={logo} alt="logo.png" />
           </div>
           <div className="center" >
-             <li onClick={() => {
+            <li onClick={() => {
               return (
                 navigate("/"),
-                window.scroll(0,0)
+                window.scroll(0, 0)
               )
             }}>Home</li>
-            <li onClick={() => window.scroll(0,810)}>About</li>
-            <li>Categories</li>
-            </div>
+            <li>About</li>
+            <li><a href="#category-section">Categories</a></li>
+          </div>
           <div className="right">
             <TbSearch onClick={() => setShowSearch(!showSearch)} />
             <AiOutlineHeart />
@@ -59,7 +85,15 @@ const Header = () => {
               <CgShoppingCart />
               {!!cartCount && <span>{cartCount}</span>}
             </span>
-            <BiUserCircle />
+            {profile == null
+              ?
+              <h4 onClick={() => login()}>Sign in with Google 🚀 </h4>
+              :
+              <div>
+                <h4>Hi, {profile.name}</h4>
+                <button onClick={logOut}>Logout</button>
+              </div>}
+              {profile == null ? " " : <img className="profile-pic" src={profile.picture} alt="profile.png" /> }
           </div>
         </div>
       </header>

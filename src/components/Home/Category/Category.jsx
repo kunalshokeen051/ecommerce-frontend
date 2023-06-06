@@ -6,7 +6,7 @@ const Category = ({ categories }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="shop-by-category">
+    <div id="category-section" className="shop-by-category">
       <h2>Categories</h2>
         <div className="categories">
           {categories?.data?.map((item) => (

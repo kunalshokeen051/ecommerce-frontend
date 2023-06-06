@@ -7,16 +7,21 @@ import { useFetch } from '../../hooks/useFetch'
 import LogoAnimationLoader from '../LogoAnimationLoader/LogoAnimationLoader'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-import {
-  FaFacebookF,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedinIn,
-  FaPinterest,
-  FaCartPlus,
-} from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa";
 import { Context } from '../../utils/Context'
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  LinkedinShareButton,
+  LinkedinIcon,
+  EmailShareButton,
+  EmailIcon
+} from 'react-share';
+import { TbWorldWww } from "react-icons/tb";
 
 const SingleProduct = () => {
   const notify = () => toast('Product Added To cart', {
@@ -86,11 +91,39 @@ const SingleProduct = () => {
                 <span className="text-bold">
                   Share:
                   <span className="social-icons">
-                    <a href="www.facebook.com" target="_blank"> <FaFacebookF size={16} className="icon" /> </a>
-                    <a href="www.instagram.com" target="_blank"> <FaInstagram size={16} className="icon" />  </a>
-                    <a href="www.pinterest.com" target="_blank"> <FaPinterest size={16} className="icon" />  </a>
-                    <a href="www.twitter.com" target="_blank"> <FaTwitter size={16} className="icon" />  </a>
-                    <a href="www.linkedin.com" target="_blank"> <FaLinkedinIn size={16} className="icon" />  </a>
+                    <FacebookShareButton
+                      url={'https://www.facebook.com'}
+                      quote={''}
+                      hashtag={`#dealspot #${product.title}`}
+                    >
+                      <FacebookIcon size={32} round />
+                    </FacebookShareButton>
+                    <WhatsappShareButton
+                      url={""}
+                      title={'title'}
+                      separator={'sepearator'}                      >
+                      <WhatsappIcon size={32} round />
+                    </WhatsappShareButton>
+                    <TwitterShareButton
+                      url={'https://www.dealspot.com'}
+                      quote={'Hee Guys Look at this nice product!'}
+                      hashtag="#dealspot"
+                    >
+                      <TwitterIcon size={32} round />
+                    </TwitterShareButton>
+                    <EmailShareButton
+                     subject={`${product.title} only at Dealspot.in`} 
+                     body={`Hee Check this Product at ${window.location}`}
+                    >
+                     <EmailIcon size={32}/>
+                    </EmailShareButton>
+                    <LinkedinShareButton
+                     url={`www.dealspot.com`}
+                      quote={'Hee Guys Look at this nice product!'}
+                      hashtag="#dealspot"
+                    >
+                     < LinkedinIcon size={32}/>
+                    </LinkedinShareButton>
                   </span>
                 </span>
               </div>

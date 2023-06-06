@@ -24,6 +24,11 @@
     box-sizing: border-box;
     font-family: "interregular", sans-serif;
 }
+
+html{
+    scroll-behavior: smooth;
+}
+
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
