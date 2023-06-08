@@ -12,9 +12,11 @@ const AppContext = ({ children }) => {
     const [cartCount, setCartCount] = useState(0);
     const [cartSubTotal, setCartSubTotal] = useState(0);
     const [loader, setLoader] = useState(true);
+    const [auth, setauth] = useState(false);
+    const [wishlistItems, setWishlist] = useState([]);
     const location = useLocation();
 
-// console.log(cartItems[0]);
+console.log(wishlistItems);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -46,6 +48,21 @@ const AppContext = ({ children }) => {
         console.log(items);
     };
 
+    const handleAddToWishlist = (product) => {
+        let items = [...wishlistItems];
+        let index = items?.findIndex((p) => p.id === product?.id);
+        if (index === -1) {
+            items = [...items, product];
+        } 
+        setWishlist(items);
+        console.log(items);
+    };
+
+    const handleRemoveFromWishlist = (product) => {
+        let items = [...wishlistItems];
+        items = items?.filter((p) => p.id !== product?.id);
+        setWishlist(items);
+    };
     const handleRemoveFromCart = (product) => {
         let items = [...cartItems];
         items = items?.filter((p) => p.id !== product?.id);
@@ -67,6 +84,12 @@ const AppContext = ({ children }) => {
     return (
         <Context.Provider
             value={{
+                handleAddToWishlist,
+                handleRemoveFromWishlist,
+                wishlistItems,
+                setWishlist,
+                auth,
+                setauth,
                 loader,
                 setLoader,
                 products,

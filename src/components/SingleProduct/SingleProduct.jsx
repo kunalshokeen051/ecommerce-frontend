@@ -8,6 +8,7 @@ import LogoAnimationLoader from '../LogoAnimationLoader/LogoAnimationLoader'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaCartPlus } from "react-icons/fa";
+import { AiFillHeart} from "react-icons/ai";
 import { Context } from '../../utils/Context'
 import {
   FacebookShareButton,
@@ -21,10 +22,11 @@ import {
   EmailShareButton,
   EmailIcon
 } from 'react-share';
-import { TbWorldWww } from "react-icons/tb";
+
+
 
 const SingleProduct = () => {
-  const notify = () => toast('Product Added To cart', {
+  const notify = (text) => toast(text, {
     position: "top-center",
     autoClose: 2000,
     hideProgressBar: false,
@@ -38,20 +40,28 @@ const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
-  const { handleAddToCart } = useContext(Context);
+  const { handleAddToCart,handleAddToWishlist} = useContext(Context);
+ 
+  // console.log(wishlist?.id);
+  // console.log(wishlist);
+  // console.log(wishlist[0]?.attributes?.title);
+  // console.log(wishlist[0]?.attributes?.price);
+  // console.log(wishlist[0]?.img?.data[0]?.attributes?.format?.small?.url);
+
+
 
   const increment = () => {
     setQuantity((prevValue) => prevValue + 1);
   }
-
+  
   const decrement = () => {
     if (quantity > 1)
-      setQuantity((prevValue) => prevValue - 1);
+    setQuantity((prevValue) => prevValue - 1);
   }
-
+  
   if (!data) return;
   const product = data?.data[0]?.attributes;
-  // console.log(product);
+// console.log(wishlist);
 
   return (
     <>
@@ -77,9 +87,15 @@ const SingleProduct = () => {
                 <button className="add-to-cart-button" onClick={() => {
                   handleAddToCart(data.data[0], quantity);
                   setQuantity(1);
-                  notify();
+                  notify("product added to cart");
                 }}>
                   <FaCartPlus size={20} /> Add to Cart
+                </button>
+                <button className="add-to-wishlist-button" onClick={() => {
+                  handleAddToWishlist(data.data[0]);
+                  notify("product added to wish list");
+                }}>
+                  <AiFillHeart size={20} /> Add to Wishlist
                 </button>
               </div>
               <span className="divider" />

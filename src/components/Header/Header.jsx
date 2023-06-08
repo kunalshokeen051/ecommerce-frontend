@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
-import { BiUserCircle } from "react-icons/bi";
+import {BsGoogle} from "react-icons/bs";
 import Search from "./Search/Search";
 import Cart from "../Cart/Cart";
 import { useNavigate } from "react-router-dom";
@@ -16,12 +16,17 @@ import axios from 'axios';
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const { cartCount, showCart, setShowCart } = useContext(Context);
-  const [user, setUser] = useState([]);
+  const { cartCount, showCart, setShowCart, setauth, wishlistItems } = useContext(Context);
+  const [user, setUser] = useState(null);
   const [profile, setProfile] = useState([]);
 
+  // console.log(user)
+
   const login = useGoogleLogin({
-    onSuccess: (codeResponse) => setUser(codeResponse),
+    onSuccess: (codeResponse) =>{
+       setUser(codeResponse)
+       setauth(true);
+      },
     onError: (error) => console.log('Login Failed:', error)
   });
 
@@ -40,7 +45,7 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     setProfile(null);
-    if (user) {
+    if (user != null) {
       axios
         .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
           headers: {
@@ -59,7 +64,6 @@ const Header = () => {
     googleLogout();
     setProfile(null);
   };
-
 
   return (
     <>
@@ -80,14 +84,17 @@ const Header = () => {
           </div>
           <div className="right">
             <TbSearch onClick={() => setShowSearch(!showSearch)} />
-            <AiOutlineHeart />
+            <span className="cart-icon" onClick={() =>navigate('/wishlist')}>
+              <AiOutlineHeart />
+              {!!(wishlistItems.length) && <span>{wishlistItems.length}</span>}
+            </span>
             <span className="cart-icon" onClick={() => setShowCart(true)}>
               <CgShoppingCart />
               {!!cartCount && <span>{cartCount}</span>}
             </span>
             {profile == null
               ?
-              <h4 onClick={() => login()}>Sign in with Google 🚀 </h4>
+              <h4 onClick={() => login()}><span><BsGoogle size={22}/></span>  <span>Sign in with Google</span></h4>
               :
               <div>
                 <h4>Hi, {profile.name}</h4>

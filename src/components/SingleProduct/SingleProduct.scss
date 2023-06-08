@@ -118,6 +118,25 @@
                     flex-grow: unset;
                 }
             }
+            .add-to-wishlist-button{
+                outline: 0;
+                border: 0;
+                height: 50px;
+                width: 180px;
+                margin-left: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                font-size: 16px;
+                color: white;
+                background: $mustard;
+                border-bottom:3px solid  $mustard;
+                flex-grow: 1;
+                @include md{
+                    flex-grow: unset;
+                }
+            }
         }
         .divider{
             margin: 20px 0;

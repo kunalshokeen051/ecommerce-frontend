@@ -1,0 +1,7 @@
+@import '../../css-config/mixins.scss';
+@import '../../css-config/variables.scss';
+
+.wishlist{
+    width: 100%;
+    min-height: calc(100vh - 80px);
+}
