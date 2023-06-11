@@ -11,12 +11,13 @@ const AppContext = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const [cartCount, setCartCount] = useState(0);
     const [cartSubTotal, setCartSubTotal] = useState(0);
-    const [loader, setLoader] = useState(true);
-    const [auth, setauth] = useState(false);
+    const [loader, setLoader] = useState(false);
+    const [auth, setAuth] = useState(false);
+    const [user, setUser] = useState([]);
     const [wishlistItems, setWishlist] = useState([]);
     const location = useLocation();
 
-console.log(wishlistItems);
+console.log(user);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -55,7 +56,7 @@ console.log(wishlistItems);
             items = [...items, product];
         } 
         setWishlist(items);
-        console.log(items);
+        // console.log(items);
     };
 
     const handleRemoveFromWishlist = (product) => {
@@ -84,12 +85,14 @@ console.log(wishlistItems);
     return (
         <Context.Provider
             value={{
+                auth,
+                setAuth,
                 handleAddToWishlist,
                 handleRemoveFromWishlist,
                 wishlistItems,
                 setWishlist,
-                auth,
-                setauth,
+                user,
+                setUser,
                 loader,
                 setLoader,
                 products,

@@ -117,13 +117,17 @@
                 @include md{
                     flex-grow: unset;
                 }
+                svg{
+                  margin: 0 5px;
+                }
             }
-            .add-to-wishlist-button{
+
+            .buy-now{
+              margin:0 10px ;
                 outline: 0;
                 border: 0;
                 height: 50px;
                 width: 180px;
-                margin-left: 10px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -135,6 +139,21 @@
                 flex-grow: 1;
                 @include md{
                     flex-grow: unset;
+                }
+                svg{
+                  margin: 0 5px;
+                }
+            }
+            .add-to-wishlist-button{
+              margin: 10px;
+                cursor: pointer;
+                color: white;
+                flex-grow: 1;
+                @include md{
+                    flex-grow: unset;
+                }
+                &:hover{
+                  color: $mustard;
                 }
             }
         }

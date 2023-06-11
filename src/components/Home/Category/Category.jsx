@@ -1,12 +1,22 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./Category.scss";
+import { Context } from '../../../utils/Context';
+import Loader from '../../LogoAnimationLoader/LogoAnimationLoader';
 
 const Category = ({ categories }) => {
   const navigate = useNavigate();
 
+  const {loader, setLoader} = useContext(Context);
+  
+  const loaderStatus = (value) =>{
+    setLoader(value);
+  }
+
+  loaderStatus(true);
+
   return (
-    <div id="category-section" className="shop-by-category">
+  <div onLoad={loaderStatus(false)} id="category-section" className="shop-by-category">
       <h2>Categories</h2>
         <div className="categories">
           {categories?.data?.map((item) => (
@@ -30,6 +40,3 @@ const Category = ({ categories }) => {
 
 export default Category;
 
-
-// process.env.REACT_APP_DEV_URL +
-                                // item.attributes.img.data.attributes.url

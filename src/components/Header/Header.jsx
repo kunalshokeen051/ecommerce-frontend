@@ -2,33 +2,24 @@ import { useEffect, useState, useContext } from "react";
 import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
-import {BsGoogle} from "react-icons/bs";
+import { BsGoogle } from "react-icons/bs";
 import Search from "./Search/Search";
 import Cart from "../Cart/Cart";
 import { useNavigate } from "react-router-dom";
 import "./Header.scss";
 import logo from '../../assets/logo.png'
 import { Context } from "../../utils/Context";
-import { googleLogout, useGoogleLogin } from '@react-oauth/google';
-import axios from 'axios';
+import LoginButton from '../Auth/LoginButton/LoginButton'
+import LogoutButton from '../Auth/LogoutButton/LogoutButton'
+import UserProfile from "../Auth/UserProfile/UserProfile";
 
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const { cartCount, showCart, setShowCart, setauth, wishlistItems } = useContext(Context);
-  const [user, setUser] = useState(null);
-  const [profile, setProfile] = useState([]);
+  const { cartCount, showCart, setShowCart, wishlistItems ,user } = useContext(Context);
 
-  // console.log(user)
-
-  const login = useGoogleLogin({
-    onSuccess: (codeResponse) =>{
-       setUser(codeResponse)
-       setauth(true);
-      },
-    onError: (error) => console.log('Login Failed:', error)
-  });
+  console.log(user);
 
   const navigate = useNavigate();
 
@@ -44,26 +35,7 @@ const Header = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-    setProfile(null);
-    if (user != null) {
-      axios
-        .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
-          headers: {
-            Authorization: `Bearer ${user.access_token}`,
-            Accept: 'application/json'
-          }
-        })
-        .then((res) => {
-          setProfile(res.data);
-        })
-        .catch((err) => console.log(err));
-    }
-  }, [user]);
-
-  const logOut = () => {
-    googleLogout();
-    setProfile(null);
-  };
+  }, []);
 
   return (
     <>
@@ -84,7 +56,7 @@ const Header = () => {
           </div>
           <div className="right">
             <TbSearch onClick={() => setShowSearch(!showSearch)} />
-            <span className="cart-icon" onClick={() =>navigate('/wishlist')}>
+            <span className="cart-icon" onClick={() => navigate('/wishlist')}>
               <AiOutlineHeart />
               {!!(wishlistItems.length) && <span>{wishlistItems.length}</span>}
             </span>
@@ -92,15 +64,22 @@ const Header = () => {
               <CgShoppingCart />
               {!!cartCount && <span>{cartCount}</span>}
             </span>
-            {profile == null
-              ?
-              <h4 onClick={() => login()}><span><BsGoogle size={22}/></span>  <span>Sign in with Google</span></h4>
+            <div className="auth-form">
+             { user?.length === 0 ||  user?.name === undefined
+             ? <div className="auth-buttons">
+             <LoginButton />
+              <UserProfile />
+             </div>
               :
-              <div>
-                <h4>Hi, {profile.name}</h4>
-                <button onClick={logOut}>Logout</button>
-              </div>}
-              {profile == null ? " " : <img className="profile-pic" src={profile.picture} alt="profile.png" /> }
+              <div className="auth-buttons">
+           <div className="user-data">
+           <img src={user?.image} alt="userpic.png" />
+              <h5>{user?.name}</h5>
+           </div>
+              <LogoutButton />
+             </div>
+              }
+            </div>
           </div>
         </div>
       </header>

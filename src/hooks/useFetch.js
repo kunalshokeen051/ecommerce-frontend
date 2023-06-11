@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-import {fetchDataFromApi} from '../utils/Api';
+import {fetchDataFromApi, postDataToApi} from '../utils/Api';
 
 export const useFetch = (endpoint) =>{
     const[data, setData] = useState();
@@ -15,3 +15,7 @@ export const useFetch = (endpoint) =>{
 
     return {data};
 }
+
+
+
+

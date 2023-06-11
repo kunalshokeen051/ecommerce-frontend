@@ -1,10 +1,12 @@
 import React, { useEffect, useContext} from "react";
 import "./Home.scss";
-
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
 import Offer from "./Offer/Offer";
 import Banner from "./Banner/Banner";
 import Category from "./Category/Category";
 import Products from "../Products/Products";
+import Newsletter from "../Footer/Newsletter/Newsletter";
 import Slider from "../Slider/Slider";
 import { fetchDataFromApi } from "../../utils/Api"
 import { Context } from "../../utils/Context"
@@ -43,6 +45,7 @@ const Home = () => {
     return (
       <>
       {loader ? <LogoAnimationLoader />: ""}
+      <Header />
       <Modal/>
       <div>
         <Offer />
@@ -56,6 +59,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <Newsletter />
+      <Footer />
       </>
     );
   }

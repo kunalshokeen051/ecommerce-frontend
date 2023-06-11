@@ -1,0 +1,16 @@
+@import '../../../css-config/mixins.scss';
+@import '../../../css-config/variables.scss';
+
+.logout-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-width: 70px;
+    width: fit-content;
+    padding:5px 10px ;
+    color: $mustard;
+    border: 2px solid $mustard;
+    background: $black;
+    border-radius: 20px;
+}

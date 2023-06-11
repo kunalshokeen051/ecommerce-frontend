@@ -1,7 +1,89 @@
-@import '../../css-config/mixins.scss';
-@import '../../css-config/variables.scss';
+@import "../../css-config/mixins.scss";
+@import "../../css-config/variables.scss";
 
-.wishlist{
+.wishlist-container-empty {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  height: fit-content;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .empty-wishlist {
+    .wishlist-inner-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      img {
+        width: 200px;
+      }
+      h3 {
+        font-size: 2rem;
+        color: $yellow;
+      }
+    }
+  }
+}
+
+
+
+// if items are present in the wishlist
+
+
+.wishlist-container-content {
+  padding: 20px 0;
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  height: fit-content;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .wishlist-item {
+    border-bottom: 2px solid $mustard;
     width: 100%;
-    min-height: calc(100vh - 80px);
+    display: flex;
+    margin: 10px 0;
+    gap: 30px;
+    padding: 0 10px;
+    .border{
+        border: 2px solid $mustard;
+        margin: 20px;
+    }
+    img {
+      width: 10%;
+      max-height:200px ;
+    }
+    .text-content {
+      width: 80%;
+      gap: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h1{
+        line-height: 35px;
+        // border: 2px solid red;
+      }
+      h3{
+        font-size: 1.5rem;
+        color: $yellow;
+      }
+    }
+  }
+  button{
+    height: 50px;
+    width: 100px;
+    background-color: $mustard;
+    color: $white;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+  }
+
+
 }

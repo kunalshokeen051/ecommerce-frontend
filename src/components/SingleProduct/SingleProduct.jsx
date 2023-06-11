@@ -1,14 +1,15 @@
 
 import { useState, useContext } from "react";
 import "./SingleProduct.scss";
+import Header from '../Header/Header'
 import RelatedProducts from "./RelatedProducts/RelatedProducts";
-import { Navigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFetch } from '../../hooks/useFetch'
 import LogoAnimationLoader from '../LogoAnimationLoader/LogoAnimationLoader'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaCartPlus } from "react-icons/fa";
-import { AiFillHeart} from "react-icons/ai";
+import { AiFillHeart } from "react-icons/ai";
 import { Context } from '../../utils/Context'
 import {
   FacebookShareButton,
@@ -24,7 +25,6 @@ import {
 } from 'react-share';
 
 
-
 const SingleProduct = () => {
   const notify = (text) => toast(text, {
     position: "top-center",
@@ -35,36 +35,32 @@ const SingleProduct = () => {
     draggable: true,
     progress: undefined,
     theme: "dark",
-  });;
+  });
+
+  const navigate = useNavigate();
+
   const [loader, setLoader] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
-  const { handleAddToCart,handleAddToWishlist} = useContext(Context);
- 
-  // console.log(wishlist?.id);
-  // console.log(wishlist);
-  // console.log(wishlist[0]?.attributes?.title);
-  // console.log(wishlist[0]?.attributes?.price);
-  // console.log(wishlist[0]?.img?.data[0]?.attributes?.format?.small?.url);
-
-
+  const { handleAddToCart, handleAddToWishlist } = useContext(Context);
 
   const increment = () => {
     setQuantity((prevValue) => prevValue + 1);
   }
-  
+
   const decrement = () => {
     if (quantity > 1)
-    setQuantity((prevValue) => prevValue - 1);
+      setQuantity((prevValue) => prevValue - 1);
   }
-  
+
   if (!data) return;
   const product = data?.data[0]?.attributes;
-// console.log(wishlist);
+
 
   return (
     <>
+      <Header />
       {loader ? <LogoAnimationLoader /> : " "}
       <div className="single-product-main-content" onLoad={() => setLoader(false)}>
         <div className="layout">
@@ -91,12 +87,17 @@ const SingleProduct = () => {
                 }}>
                   <FaCartPlus size={20} /> Add to Cart
                 </button>
-                <button className="add-to-wishlist-button" onClick={() => {
+                <button className="buy-now" onClick={() => {
+                  handleAddToCart(data.data[0], quantity);
+                  setQuantity(1);
+                  navigate("/checkout");
+                }}>
+                  <FaCartPlus size={20} /> Buy Now
+                </button>
+                <AiFillHeart className="add-to-wishlist-button"  size={32} onClick={() => {
                   handleAddToWishlist(data.data[0]);
                   notify("product added to wish list");
-                }}>
-                  <AiFillHeart size={20} /> Add to Wishlist
-                </button>
+                }} />
               </div>
               <span className="divider" />
               <div className="info-item">
@@ -128,17 +129,17 @@ const SingleProduct = () => {
                       <TwitterIcon size={32} round />
                     </TwitterShareButton>
                     <EmailShareButton
-                     subject={`${product.title} only at Dealspot.in`} 
-                     body={`Hee Check this Product at ${window.location}`}
+                      subject={`${product.title} only at Dealspot.in`}
+                      body={`Hee Check this Product at ${window.location}`}
                     >
-                     <EmailIcon size={32}/>
+                      <EmailIcon size={32} />
                     </EmailShareButton>
                     <LinkedinShareButton
-                     url={`www.dealspot.com`}
+                      url={`www.dealspot.com`}
                       quote={'Hee Guys Look at this nice product!'}
                       hashtag="#dealspot"
                     >
-                     < LinkedinIcon size={32}/>
+                      < LinkedinIcon size={32} />
                     </LinkedinShareButton>
                   </span>
                 </span>
