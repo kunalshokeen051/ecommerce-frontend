@@ -1,0 +1,172 @@
+@import "../../css-config/variables.scss";
+@import "../../css-config/mixins.scss";
+
+.checkout-page {
+  background: $black;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  .inner-checkout-container {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    width: 70%;
+    // border: 2px solid red;
+    align-items: center;
+    justify-content: center;
+    min-height: 80%;
+    height: fit-content;
+    h1 {
+      align-self: flex-start;
+      margin-left: 20px;
+      margin-top: 20px;
+      color: #fc9c00;
+      font-size: 4rem;
+    }
+    .form-container {
+      // border: 2px solid red;
+      width: 90%;
+      background: linear-gradient(40deg, #ff5a19, #e600ff, #ffe310);
+      border-radius: 5px;
+      padding: 5px;
+      display: flex;
+      gap: 20px;
+      .left {
+        background: $black;
+        border-radius: 20px;
+        padding: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        .col-1 {
+          gap: 2px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+        }
+        .col-2 {
+          gap: 2px;
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+        }
+        .col-3 {
+          margin: 20px 0;
+          width: 100%;
+          display: flex;
+          gap: 2px;
+          flex-direction: column;
+          input {
+            width: 30%;
+          }
+        }
+        .col-4 {
+          display: flex;
+          gap: 2px;
+          flex-direction: column;
+          margin: 20px 0;
+          width: 100%;
+          height: 100px;
+          input {
+            min-height: 100px;
+            height: fit-content;
+            padding: 1px 5px;
+            font-size: 1.2rem;
+          }
+        }
+        input {
+          padding: 5px 10px;
+          border-radius: 5px;
+          background-color: rgba(255, 255, 255, 0.2);
+          color: white;
+          min-height: 25px;
+          outline: none;
+          border: none;
+          font-weight: 700;
+          &:focus {
+            background-color: white;
+            color: black;
+          }
+        }
+        button {
+          background-color: $mustard;
+          color: $white;
+          font-size: 1.2rem;
+          padding: 7px 10px;
+          border-radius: 10px;
+          border: none;
+          outline: none;
+        }
+      }
+    }
+  }
+  .right {
+    // border: 2px solid red;
+    width: 30%;
+    min-height: 100vh;
+    height: fit-content;
+    padding: 20px 0;
+    .cart-details {
+      display: flex;
+      flex-direction: column;
+      h2 {
+        color: white;
+        margin: 10px 30px;
+      }
+      h3 {
+        margin: 10px 30px;
+      }
+
+      .item-container {
+        max-height: 40vh;
+        overflow: scroll;
+        .product-container {
+          height: 100px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 10px;
+          margin: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 90%;
+          gap: 20px;
+          img {
+            width: 20%;
+            max-height: 90%;
+          }
+          .title {
+            width: 100%;
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            p {
+              color: $mustard;
+            }
+          }
+        }
+      }
+      .break-line {
+        margin: 20px auto;
+        width: 85%;
+        border: 2px solid gray;
+      }
+    }
+    .checkout-footer {
+      margin: 20px 0;
+      h3 {
+        span:nth-child(2) {
+          // border: 2px solid red;
+          font-size: 1.8rem;
+          color: $yellow;
+        }
+      }
+    }
+  }
+}

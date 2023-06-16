@@ -17,7 +17,7 @@ const AppContext = ({ children }) => {
     const [wishlistItems, setWishlist] = useState([]);
     const location = useLocation();
 
-console.log(user);
+// console.log(user);
 
     useEffect(() => {
         window.scrollTo(0, 0);

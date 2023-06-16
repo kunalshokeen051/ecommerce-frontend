@@ -6,7 +6,7 @@ import SingleProduct from './components/SingleProduct/SingleProduct'
 import AppContext from './utils/Context'
 import SubscriberPage from './components/SubscriberPage/SubscriberPage';
 import Wishlist from './Pages/Wishlist/Wishlist';
-import OrderPage from './Pages/OrderPage/OrderPage'
+import Checkout from './Pages/checkout/Checkout';
 
 const App = () => {
 
@@ -21,7 +21,7 @@ const App = () => {
                     <Route path='/comingSoon' element={<SubscriberPage/>} />
                     <Route path='/login' element={<SubscriberPage/>} />
                     <Route path='/wishlist' element={ <Wishlist/> } />
-                    <Route path='/checkout' element={ <OrderPage/> } />
+                    <Route path='/checkout' element={ <Checkout/> } />
                 </Routes>
             </AppContext>
         </Router>

@@ -19,7 +19,7 @@ const Header = () => {
   const [showSearch, setShowSearch] = useState(false);
   const { cartCount, showCart, setShowCart, wishlistItems ,user } = useContext(Context);
 
-  console.log(user);
+  // console.log(user);
 
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const Header = () => {
     const offset = window.scrollY;
     if (offset > 200) {
       setScrolled(true);
-      setShowCart(false);
+      // setShowCart(false);
     } else {
       setScrolled(false);
     }

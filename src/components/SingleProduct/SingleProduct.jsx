@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaCartPlus } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
+import { makePaymentRequest } from '../../utils/Api'
 import { Context } from '../../utils/Context'
 import {
   FacebookShareButton,
@@ -36,14 +37,13 @@ const SingleProduct = () => {
     progress: undefined,
     theme: "dark",
   });
-
   const navigate = useNavigate();
-
   const [loader, setLoader] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
-  const { handleAddToCart, handleAddToWishlist } = useContext(Context);
+  // console.log(data);
+  const { handleAddToCart, handleAddToWishlist, cartItems } = useContext(Context);
 
   const increment = () => {
     setQuantity((prevValue) => prevValue + 1);
@@ -56,6 +56,7 @@ const SingleProduct = () => {
 
   if (!data) return;
   const product = data?.data[0]?.attributes;
+
 
 
   return (
@@ -89,12 +90,11 @@ const SingleProduct = () => {
                 </button>
                 <button className="buy-now" onClick={() => {
                   handleAddToCart(data.data[0], quantity);
-                  setQuantity(1);
                   navigate("/checkout");
                 }}>
                   <FaCartPlus size={20} /> Buy Now
                 </button>
-                <AiFillHeart className="add-to-wishlist-button"  size={32} onClick={() => {
+                <AiFillHeart className="add-to-wishlist-button" size={32} onClick={() => {
                   handleAddToWishlist(data.data[0]);
                   notify("product added to wish list");
                 }} />
@@ -117,8 +117,7 @@ const SingleProduct = () => {
                     </FacebookShareButton>
                     <WhatsappShareButton
                       url={""}
-                      title={'title'}
-                      separator={'sepearator'}                      >
+                      title={'title'}                    >
                       <WhatsappIcon size={32} round />
                     </WhatsappShareButton>
                     <TwitterShareButton

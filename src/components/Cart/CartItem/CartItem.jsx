@@ -12,7 +12,7 @@ const CartItem = () => {
                 <div
                     className="search-result-item"
                     key={item.id}
-                    onClick={() => {}}>
+                    onClick={() => { }}>
                     <div className="image-container">
                         <img
                             src={
