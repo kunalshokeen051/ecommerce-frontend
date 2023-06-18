@@ -27,12 +27,12 @@
       font-size: 4rem;
     }
     .form-container {
-      // border: 2px solid red;
       width: 90%;
       background: linear-gradient(40deg, #ff5a19, #e600ff, #ffe310);
       border-radius: 5px;
       padding: 5px;
       display: flex;
+      flex-direction:column ;
       gap: 20px;
       .left {
         background: $black;
@@ -91,14 +91,17 @@
             color: black;
           }
         }
-        button {
-          background-color: $mustard;
-          color: $white;
-          font-size: 1.2rem;
-          padding: 7px 10px;
-          border-radius: 10px;
-          border: none;
-          outline: none;
+      }
+      button {
+        background-color: $white;
+        color: $black;
+        font-size: 1.2rem;
+        padding: 7px 10px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        &:hover, &:focus{
+          transform: scale(.95);
         }
       }
     }
@@ -133,9 +136,11 @@
           justify-content: center;
           width: 90%;
           gap: 20px;
+          padding: 10px;
           img {
             width: 20%;
             max-height: 90%;
+            border-radius: 10px;
           }
           .title {
             width: 100%;
@@ -160,9 +165,32 @@
     }
     .checkout-footer {
       margin: 20px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      .coupon-container {
+        width: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        input {
+          height: 100%;
+        }
+        label {
+          padding:6px ;
+          outline: none;
+          border: none;
+          background: $mustard;
+          height: 100%;
+          &:hover{
+            
+          }
+        }
+      }
       h3 {
         span:nth-child(2) {
-          // border: 2px solid red;
           font-size: 1.8rem;
           color: $yellow;
         }

@@ -13,11 +13,9 @@ const AppContext = ({ children }) => {
     const [cartSubTotal, setCartSubTotal] = useState(0);
     const [loader, setLoader] = useState(false);
     const [auth, setAuth] = useState(false);
-    const [user, setUser] = useState([]);
+    const [currentUser, setCurrentUser] = useState(null);
     const [wishlistItems, setWishlist] = useState([]);
     const location = useLocation();
-
-// console.log(user);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -85,14 +83,14 @@ const AppContext = ({ children }) => {
     return (
         <Context.Provider
             value={{
+                currentUser,
+                setCurrentUser,
                 auth,
                 setAuth,
                 handleAddToWishlist,
                 handleRemoveFromWishlist,
                 wishlistItems,
                 setWishlist,
-                user,
-                setUser,
                 loader,
                 setLoader,
                 products,

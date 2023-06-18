@@ -2,32 +2,32 @@ import { useEffect, useState, useContext } from "react";
 import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
-import { BsGoogle } from "react-icons/bs";
 import Search from "./Search/Search";
 import Cart from "../Cart/Cart";
 import { useNavigate } from "react-router-dom";
 import "./Header.scss";
 import logo from '../../assets/logo.png'
 import { Context } from "../../utils/Context";
-import LoginButton from '../Auth/LoginButton/LoginButton'
-import LogoutButton from '../Auth/LogoutButton/LogoutButton'
-import UserProfile from "../Auth/UserProfile/UserProfile";
+import LoginButton from '../Auth/LoginButton'
+import Logout from '../Auth/LogOut'
+import Profile from '../Auth/Profile'
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const Header = () => {
+  const { isAuthenticated} = useAuth0();
   const [scrolled, setScrolled] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const { cartCount, showCart, setShowCart, wishlistItems ,user } = useContext(Context);
+  const { cartCount, showCart, setShowCart, wishlistItems, auth} = useContext(Context);
 
-  // console.log(user);
-
+  console.log(auth);
+  
   const navigate = useNavigate();
 
   const handleScroll = () => {
     const offset = window.scrollY;
     if (offset > 200) {
       setScrolled(true);
-      // setShowCart(false);
     } else {
       setScrolled(false);
     }
@@ -36,6 +36,7 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
   }, []);
+
 
   return (
     <>
@@ -51,7 +52,7 @@ const Header = () => {
                 window.scroll(0, 0)
               )
             }}>Home</li>
-            <li>About</li>
+            <li onClick={() => { navigate("/about") }} >About</li>
             <li><a href="#category-section">Categories</a></li>
           </div>
           <div className="right">
@@ -65,19 +66,13 @@ const Header = () => {
               {!!cartCount && <span>{cartCount}</span>}
             </span>
             <div className="auth-form">
-             { user?.length === 0 ||  user?.name === undefined
-             ? <div className="auth-buttons">
-             <LoginButton />
-              <UserProfile />
-             </div>
-              :
-              <div className="auth-buttons">
-           <div className="user-data">
-           <img src={user?.image} alt="userpic.png" />
-              <h5>{user?.name}</h5>
-           </div>
-              <LogoutButton />
-             </div>
+              {auth 
+                 ? <Logout />
+                :
+                <div className="auth-form-profile">
+                  <Profile />
+                <LoginButton />
+                </div>
               }
             </div>
           </div>

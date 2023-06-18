@@ -25,22 +25,22 @@
     @include md {
       height: 70px;
     }
-    .left {  
+    .left {
       font-size: 22px;
-      display: none; 
+      display: none;
       font-weight: 700;
       cursor: pointer;
       transition: all 100ms linear;
-      &:hover{
+      &:hover {
         color: $mustard;
       }
       @include md {
         font-size: 34px;
         display: flex;
       }
-      img{
+      img {
         // border: 2px solid red;
-      width: 150px;
+        width: 150px;
       }
     }
     .center {
@@ -56,14 +56,14 @@
         font-weight: 600;
         text-transform: uppercase;
         cursor: pointer;
-        &:hover{
+        &:hover {
           color: $yellow;
         }
-        a{
+        a {
           list-style: none;
           text-decoration: none;
           color: $white;
-          &:hover{
+          &:hover {
             color: $yellow;
           }
         }
@@ -90,7 +90,7 @@
         span {
           min-width: 20px;
           text-align: center;
-          animation: popup .2s 1 forwards;
+          animation: popup 0.2s 1 forwards;
           background-color: $yellow;
           color: $black;
           font-weight: 700;
@@ -103,31 +103,21 @@
           border-radius: 10px;
         }
       }
-      button{
-        background-color: $white;
-        outline: none;
-        color: $black;
-        padding: 2px 10px;
-        border-radius: 10px;
+      .auth-form {
+        button {
+          background-color: $mustard;
+          outline: none;
+          font-weight: 700;
+          border: none;
+          color: $black;
+          padding: 2px 10px;
+          border-radius: 10px;
+        }
+        .auth-form-profile {
+          display: flex;
+          gap: 10px;
+        }
       }
-   .auth-buttons{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-.user-data{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  img{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    }
-    
-}
-   } 
     }
   }
 
@@ -159,9 +149,9 @@
   }
   .right {
     display: flex;
-    gap:100px;
+    gap: 100px;
     .list {
-      list-style:disc;
+      list-style: disc;
       li {
         margin: 10px;
       }
@@ -169,12 +159,9 @@
   }
 }
 
-.showExpandedMenu{
-  animation: expandedHeader .5s ease forwards;
+.showExpandedMenu {
+  animation: expandedHeader 0.5s ease forwards;
 }
-
-
-
 
 @keyframes expandedHeader {
   0% {
@@ -185,7 +172,7 @@
   100% {
     transform: translateY(0);
     opacity: 1;
-   backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
   }
 }
 
@@ -199,28 +186,27 @@
 }
 
 @keyframes popup {
-0%{
-opacity: 0;
-transform: scale(0);
-
-}
-25%{
-  opacity: 0;
-  transform: scale(.5);
-}
-50%{
-  opacity: 0;
-  transform: scale(1);
-}
-75%{
-  opacity: 0.5;
-  transform: scale(1.5);
-  box-shadow: 0px 0px 20px 5px $mustard;
-  transform: translateX(-1);
-}
-100%{
-  opacity: 1;
-  transform: scale(1);
-  transform: translateX(1);
-}
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  25% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  75% {
+    opacity: 0.5;
+    transform: scale(1.5);
+    box-shadow: 0px 0px 20px 5px $mustard;
+    transform: translateX(-1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    transform: translateX(1);
+  }
 }

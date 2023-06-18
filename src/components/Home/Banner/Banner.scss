@@ -2,7 +2,6 @@
 @import "../../../css-config/variables.scss";
 
 .hero-banner {
-  // border: 2px solid red;
   position: relative;
   height: calc(100vh - 50px);
   width: 100%;
@@ -15,9 +14,10 @@
 
   .image-container {
     width: 100%;
-    height: calc(100vh - 180px);
+    height: calc(100vh - 160px);
     img {
       width: 100%;
+      height:calc(100vh - 160px);
     }
     .shop {
       position: absolute;

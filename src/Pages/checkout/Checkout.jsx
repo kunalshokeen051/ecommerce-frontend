@@ -72,7 +72,7 @@ return (
     <Header/>
     <div className='checkout-page'>
       <div className="inner-checkout-container">
-        <h1 onClick= {() => displayRazorpay(cartSubTotal)} >Checkout</h1>
+        <h1>Checkout</h1>
         <div className='form-container'>
           <form className='left' >
             <div className="col-1">
@@ -92,9 +92,8 @@ return (
               <input type="text" name='address' autoFocus />
             </div>
           </form>
-            <button>Pay Now</button>
+            <button onClick={() => displayRazorpay(cartSubTotal)}>Pay Now</button>
         </div>
-        {console.log(cartSubTotal)}
       </div>
       <div className="right">
         <div className='cart-details'>
@@ -103,6 +102,7 @@ return (
             {cartItems.map((item) => {
               return (
                 <div key={item.id} className='product-container'>
+                <img src={item.attributes.img.data[0].attributes.formats.thumbnail.url} alt="" className="prod-pic" />
                   <div className="title">
                     <h4>{item.attributes.title}</h4>
                     <p>Quantity: {item.attributes.quantity}</p>
@@ -112,9 +112,12 @@ return (
             })}
           </div>
           <div className="checkout-footer">
-            <h3>{`Total Items: ${" "} ${""} ${cartCount}`}</h3>
-            <h3>{`Your SubTotal is:  ${" "} ${""} ₹ ${cartSubTotal}`}</h3>
-            <h3>Delivery Charge: &#8377; 0</h3>
+            <h3>{`Total Items: ${cartCount}`}</h3>
+            <h3>{`Your SubTotal is: ₹ ${cartSubTotal}`}</h3>
+            <div className="coupon-container">
+              <input type="text" name='coupon' />
+              <label htmlFor="coupon">Apply</label>
+            </div>
             <div className='break-line' />
             <h3>
               <span>Total Amount to be paid: </span>
